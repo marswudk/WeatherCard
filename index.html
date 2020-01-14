@@ -133,17 +133,12 @@
                 var cards = document.querySelector('.cards');
                 var locations = res.records.location;
                 // console.log(res);
-
-
-
-
-
                 // console.log('location:',locationName,'Pop',Pop);
 
                 for (let index = 0; index < locations.length; index++) {
                     const location = locations[index];
                     var time_array = location.weatherElement[0].time;
-                    var imgs = [];
+                    var imgs = [];//設一個空陣列 接收下面回傳回來的img
 
                     for (let j = 0; j < time_array.length; j++) {
                         const time = time_array[j];
@@ -160,14 +155,11 @@
                         var img_array = [sunny, cloudy, rainy];
                         var Pop_number = parseInt(Pop);
                         // console.log(imgs);
-                         console.log(Pop_number);
+                        //  console.log(Pop_number);
 
                         var img;
-                        // var img2;
-                        // var img3;
-                        
-                        if(time_array[0]) {
-                                                    
+                        if (time_array[0]) {
+
                             if (Pop_number < 20) {
                                 img = img_array[0]
                             } else if (Pop_number >= 50) {
@@ -176,10 +168,10 @@
                                 img = img_array[1]
                             }
                             imgs.push(img);
-                            console.log(time_array[0]);
-                            
+                            // console.log(time_array[0]);
+
                         }
-                        if(time == time[1]) {
+                        if (time == time[1]) {
                             if (Pop_number < 20) {
                                 img = img_array[0]
                             } else if (Pop_number >= 50) {
@@ -188,8 +180,8 @@
                                 img = img_array[1]
                             }
                             imgs.push(img);
-                        } 
-                        if(time == time[2]) {
+                        }
+                        if (time == time[2]) {
                             if (Pop_number < 20) {
                                 img = img_array[0]
                             } else if (Pop_number >= 50) {
@@ -198,11 +190,11 @@
                                 img = img_array[1]
                             }
                             imgs.push(img);
-                            
+
                         }
 
                     }
-                    
+
                     //Question： 如何在不同欄位分別抓取時間的資訊？
                     cards.innerHTML += `<div class="card">
 
@@ -212,7 +204,7 @@
                         <section class="content">
                             <div class="time">
                                 <p>12小時</p>
-                                <img class="img" src=${imgs[0]} alt="${WxName}" title="${WxName}">
+                                <img class="img" id="img" src=${imgs[0]} alt="${WxName}" title="${WxName}">
                             </div>
                             <div class="detail">
                                 <p>${WxName}</p>
@@ -220,7 +212,7 @@
                             </div>
                             <div class="time">
                                 <p>24小時</p>
-                                <img class="img" src=${imgs[1]} alt="${WxName}" title="${WxName}">
+                                <img class="img" id="img" src=${imgs[1]} alt="${WxName}" title="${WxName}">
                             </div>
                             <div class="detail">
                                 <p>${WxName}</p>
@@ -228,7 +220,7 @@
                             </div>
                             <div class="time">
                                 <p>36小時</p>
-                                <img class="img" src=${imgs[2]} alt="${WxName}" title="${WxName}">
+                                <img class="img" id="img" src=${imgs[2]} alt="${WxName}" title="${WxName}">
                             </div>
                             <div class="detail">
                                 <p>${WxName}</p>    
@@ -236,35 +228,31 @@
                             </div>
                         </section>
                         </div>`
+                    var infos = document.querySelectorAll('.time');
+                    var details = document.querySelectorAll('.detail');
+                    var weather_imgs = document.querySelectorAll('.img');
+                    weather_imgs.forEach(img => {
+                        img.onclick = function () {
+                        var index = $(this).index;
+                        // console.log(details);
+                        // infos.forEach(info => {
+                            // infos[this].classList.add('active');
+                        // });
+                        // details.forEach(detail =>{
+                        //     detail.classList.remove('active');
+                        // });
                         
-                        
-                        
-                    //     var infor = document.querySelector('.time');
-                    //     var detail = document.querySelector('.detail');
-                    //     img.onclick = function () {
-                    //     infor.classList.add('active');
-                    //     detail.classList.remove('active');
-                    // }
+                    }
+
+                    });
+                    
 
                 }
 
-               
-
             }
-            
+
 
         });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
